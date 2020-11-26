@@ -24,7 +24,7 @@ public class AgendaCitas {
 
 
 
-    public void FilePaciente(){
+    /*public void FilePaciente(){
         String separator = FileSystems.getDefault().getSeparator();
         String fileName = String.format("src%scom%slauracalderon%sDataBasePaciente.csv",separator,separator,separator,separator,separator);
         Path path = Paths.get(fileName);
@@ -40,7 +40,7 @@ public class AgendaCitas {
             }
         }
 
-    }
+    }*/
 
 
     public static void main(String[] args) {

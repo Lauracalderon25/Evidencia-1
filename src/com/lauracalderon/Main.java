@@ -8,10 +8,12 @@ public class Main {
 
     public static void main(String[] args){
 
-        CrearDoctor crear = new CrearDoctor();
-        crear.ListaDoctores();
+        login login = new login();
+        login.login();
         CrearPaciente crearpaciente = new CrearPaciente();
         crearpaciente.ListaPacientes();
+        CrearDoctor crearDoctor = new CrearDoctor();
+        crearDoctor.ListaDoctores();
 
         /*AgendaCitas DF = new AgendaCitas();
         DF.FilePaciente();
