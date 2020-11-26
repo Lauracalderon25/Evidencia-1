@@ -14,6 +14,8 @@ public class Main {
         crearpaciente.ListaPacientes();
         CrearDoctor crearDoctor = new CrearDoctor();
         crearDoctor.ListaDoctores();
+        CrearCita crearCita = new CrearCita();
+        crearCita.ListaCitas();
 
         /*AgendaCitas DF = new AgendaCitas();
         DF.FilePaciente();
