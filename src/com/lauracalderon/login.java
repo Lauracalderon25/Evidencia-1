@@ -44,35 +44,6 @@ public class login {
         }
     }
 
-    public static void arcivoCsv(){
-        public static void ExportarCSV(List<Doctor> Doctores){
-            String salidaArchivo = "DataBaseDoctor.csv"; // Nombre del archivo
-            boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
-
-            // Si existe un archivo llamado asi lo borra
-            if(existe) {
-                File archivoDataBaseDoctor = new File(salidaArchivo);
-                archivoDataBaseDoctor.delete();
-            }
-
-            try {
-                // Crea el archivo
-                CsvWriter salidaCSV = new CsvWriter(new FileWriter(salidaArchivo, true), ',');
-
-                // Datos para identificar las columnas
-                salidaCSV.write("Nombre");
-                salidaCSV.write("Telefono");
-                salidaCSV.write("Correo");
-                salidaCSV.write("Especialidad");
-                salidaCSV.write("Cedula");
-
-                salidaCSV.endRecord(); // Deja de escribir en el archivo
-
-                // Recorremos la lista y lo insertamos en el archivo
-                for(Doctor user : Doctores) {
-                    salidaCSV.write(user.getNOMBRE(
-
-                }
 
 
 }

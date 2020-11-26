@@ -10,7 +10,8 @@ public class Main {
 
         CrearDoctor crear = new CrearDoctor();
         crear.ListaDoctores();
-
+        CrearPaciente crearpaciente = new CrearPaciente();
+        crearpaciente.ListaPacientes();
 
         /*AgendaCitas DF = new AgendaCitas();
         DF.FilePaciente();
