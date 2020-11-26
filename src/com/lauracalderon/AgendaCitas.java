@@ -5,11 +5,15 @@ import jdk.swing.interop.SwingInterOpUtils;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
+import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+
 
 public class AgendaCitas {
-    public static String NOMBRE;
-    public static String TELEFONO;
-    public static String CORREO;
+
 
     public static String DIRECCION;
     public static String FECHA;
@@ -19,26 +23,7 @@ public class AgendaCitas {
 
 
 
-    //String separator = FileSystems.getDefault().getSeparator();
-    //String filename = String.format("src%scom%slauracalderon%sArchivoDataBase.csv",separator,separator,separator,separator,separator,separator);
 
-    public void FileDoctor(){
-        String separator = FileSystems.getDefault().getSeparator();
-        String fileName = String.format("src%scom%slauracalderon%sDataBaseDoctor.csv",separator,separator,separator,separator,separator);
-        Path path = Paths.get(fileName);
-
-        ArrayList<String> lines = new ArrayList<>();
-
-        if(!Files.exists(path)){
-            File file = new File(String.valueOf(path));
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.out.println("Error"+ e);
-            }
-        }
-
-    }
     public void FilePaciente(){
         String separator = FileSystems.getDefault().getSeparator();
         String fileName = String.format("src%scom%slauracalderon%sDataBasePaciente.csv",separator,separator,separator,separator,separator);
@@ -64,7 +49,7 @@ public class AgendaCitas {
 
     }
 
-    public static void menuOpcionesPrincipal() {
+    public void menuOpcionesPrincipal() {
         Scanner opmenu = new Scanner(System.in);
         //File ArchivoDB = new File("ArchivoDatabase.csv");
 
@@ -135,13 +120,14 @@ public class AgendaCitas {
     }
 
     private static void agregarRegistro()  {
-        AgendaCitas nose = new AgendaCitas();
+        /*AgendaCitas nose = new AgendaCitas();
         nose.FileDoctor();
         Scanner entrada = new Scanner(System.in);
         System.out.println("Ingresa nombre del doctor ");
         var nombre = entrada.next();
         System.out.println("Ingresar ID: ");
-        var numero = entrada.next();
+        var numero = entrada.next();*/
+
 
 
     }

@@ -1,18 +1,21 @@
 package com.lauracalderon;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        //ArchivoDB DB = new ArchivoDB();
-        //DB.cargar();
-        AgendaCitas SD = new AgendaCitas();
-        SD.FileDoctor();
-        AgendaCitas DF = new AgendaCitas();
+    public static void main(String[] args){
+
+        CrearDoctor crear = new CrearDoctor();
+        crear.ListaDoctores();
+
+
+        /*AgendaCitas DF = new AgendaCitas();
         DF.FilePaciente();
         AgendaCitas AC = new AgendaCitas();
-        AC.menuOpcionesPrincipal();
+        AC.menuOpcionesPrincipal();*/
 
     }
 }
