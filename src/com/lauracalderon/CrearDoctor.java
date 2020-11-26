@@ -14,8 +14,9 @@ public class CrearDoctor {
 
    public void ListaDoctores()  {
         List<Doctor> Doctores = new ArrayList<Doctor>();
-        Doctores.add(new Doctor("Laura Garcia", "123456788", "laura25@gmail.com","Medico general","98765" ));
-        Doctores.add(new Doctor("Valeria Díaz","7654323456", "valeria24@gmail.com","Pediatra","65432345"));
+        Doctores.add(new Doctor("Laura Calderon", "123456788", "laura25@gmail.com","Medico general","98765" ));
+        Doctores.add(new Doctor("Valeria Diaz","7654323456", "valeria24@gmail.com","Pediatra","65432345"));
+        Doctores.add(new Doctor("Melissa Luna", "1234565432", "melissa21@gmail.com", "Medico general", "54378"));
 
         ImportarCSV();
         ExportarCSV(Doctores);
