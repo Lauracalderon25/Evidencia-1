@@ -9,14 +9,36 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CrearCita {
 
     public void ListaCitas()  {
         List<Cita> Citas = new ArrayList<Cita>();
-        Citas.add(new Cita("Laura Calderon", "30 de noviembre de 2020", "15 hrs ","Gripa","Laura Calderon" ));
-       // Citas.add(new Cita("Valeria Diaz","7654323456", "valeria24@gmail.com","Pediatra","65432345"));
-      //  Citas.add(new Cita("Melissa Luna", "1234565432", "melissa21@gmail.com", "Medico general", "54378"));
+
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingresa el nombre del paciente");
+        var nombre = entrada.nextLine();
+
+        Scanner leer = new Scanner(System.in);
+        System.out.println("Ingresa la fecha");
+        var fecha = leer.nextLine();
+
+        Scanner entrada1 = new Scanner(System.in);
+        System.out.println("Ingresa la hora");
+        var hora = entrada1.nextLine();
+
+        Scanner entrada2 = new Scanner(System.in);
+        System.out.println("Ingresa el motivo");
+        var motivo = entrada2.nextLine();
+
+        Scanner entrada3 = new Scanner(System.in);
+        System.out.println("Ingresa el nombre del doctor");
+        var nomdoctor = entrada3.nextLine();
+
+
+        Citas.add(new Cita (nombre, fecha, hora, motivo, nomdoctor));
+
 
         ImportarCSV();
         ExportarCSV(Citas);
@@ -81,17 +103,17 @@ public class CrearCita {
                 usuarios.add(new Cita(Nombre, Fecha, Hora, Motivo, NomDoctor)); // Añade la informacion a la lista
             }
 
-            leerUsuarios.close(); // Cierra el archivo
+           // leerUsuarios.close(); // Cierra el archivo
 
             // Recorremos la lista y la mostramos en la pantalla
-            for(Cita user : usuarios) {
+          /*  for(Cita user : usuarios) {
                 System.out.println(user.getNOMBRE() + " , "
                         + user.getFECHA() + " , "
                         +user.getHORA() + " , "
                         +user.getMOTIVO() + " , "
                         +user.getNOMDOCTOR());
 
-            }
+            }*/
 
         } catch(FileNotFoundException e) {
             e.printStackTrace();

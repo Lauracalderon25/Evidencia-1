@@ -60,8 +60,8 @@ public class AgendaCitas {
                     System.out.println("-----------------------------------------------------------------------");
                     System.out.println("                       AGREGAR CITA                                         ");
                     System.out.println("---------------------------------------------------------------------\n");
-                    //CrearPaciente crearPaciente = new CrearPaciente();
-                    //crearPaciente.ListaPacientes();
+                    CrearCita crearCita = new CrearCita();
+                    crearCita.ListaCitas();
                     System.out.println("\n---------------------------------------------------------------------");
                     System.out.println("----------------------------------------------------------------------\n\n");
                     break;
