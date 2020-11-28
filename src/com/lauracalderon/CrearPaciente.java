@@ -9,14 +9,36 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CrearPaciente {
 
     public void ListaPacientes()  {
         List<Paciente> Pacientes = new ArrayList<Paciente>();
-        Pacientes.add(new Paciente("Laura Calderon", "123456788", "laura25@gmail.com","20","femenino" ));
-        Pacientes.add(new Paciente("Valeria Diaz","7654323456", "valeria24@gmail.com","50","femenino"));
-        Pacientes.add(new Paciente("Melissa Luna", "1234565432", "melissa21@gmail.com", "30", "femenino"));
+
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingresa el nombre del paciente");
+        var nombre = entrada.nextLine();
+
+        Scanner leer = new Scanner(System.in);
+        System.out.println("Ingresa el telefono");
+        var telefono = leer.nextLine();
+
+        Scanner entrada1 = new Scanner(System.in);
+        System.out.println("Ingresa el correo");
+        var correo = entrada1.nextLine();
+
+        Scanner entrada2 = new Scanner(System.in);
+        System.out.println("Ingresa la edad del paciente");
+        var edad = entrada2.nextLine();
+
+        Scanner entrada3 = new Scanner(System.in);
+        System.out.println("Ingresa el genero del paciente");
+        var genero = entrada3.nextLine();
+
+
+        Pacientes.add(new Paciente(nombre, telefono, correo,edad, genero ));
+
         //Doctores.add(new Doctor())
         ImportarCSV();
         ExportarCSV(Pacientes);
@@ -81,17 +103,17 @@ public class CrearPaciente {
                 usuarios.add(new Paciente(Nombre, Telefono, Correo, Edad, Genero)); // Añade la informacion a la lista
             }
 
-            leerUsuarios.close(); // Cierra el archivo
+            //leerUsuarios.close(); // Cierra el archivo
 
             // Recorremos la lista y la mostramos en la pantalla
-            for(Paciente user : usuarios) {
+            /*for(Paciente user : usuarios) {
                 System.out.println(user.getNOMBRE() + " , "
                         + user.getTELEFONO() + " , "
                         +user.getCORREO() + " , "
                         +user.getEDAD() + " , "
                         +user.getGENERO());
 
-            }
+            }*/
 
         } catch(FileNotFoundException e) {
             e.printStackTrace();

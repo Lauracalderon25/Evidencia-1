@@ -24,6 +24,7 @@ public class AgendaCitas {
         Scanner opmenu = new Scanner(System.in);
 
         int opcion;
+        boolean salir = false;
 
         do {
             System.out.println("---------------------------------------------------------------------");
@@ -69,6 +70,7 @@ public class AgendaCitas {
                     System.out.println("Eliminar datos");
                     break;
                 case 5:
+                    salir = true;
                     System.out.println("Salir");
                     break;
                 default:

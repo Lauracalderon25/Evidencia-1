@@ -21,6 +21,5 @@ public class Main {
         DF.FilePaciente();
         AgendaCitas AC = new AgendaCitas();
         AC.menuOpcionesPrincipal();*/
-
     }
 }
