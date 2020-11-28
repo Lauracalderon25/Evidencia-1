@@ -10,7 +10,7 @@ public class Main {
 
         login login = new login();
         login.login();
-        CrearPaciente crearpaciente = new CrearPaciente();
+        /*ACrearPaciente crearpaciente = new CrearPaciente();
         crearpaciente.ListaPacientes();
         CrearDoctor crearDoctor = new CrearDoctor();
         crearDoctor.ListaDoctores();

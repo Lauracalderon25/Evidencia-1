@@ -22,7 +22,7 @@ public class AgendaCitas {
 
     public void menuOpcionesPrincipal() {
         Scanner opmenu = new Scanner(System.in);
-
+        Scanner scanner = new Scanner(System.in);
         int opcion;
         boolean salir = false;
 
@@ -37,48 +37,55 @@ public class AgendaCitas {
             System.out.println("3.Agregar una nueva cita");
             System.out.println("4.Eliminar cita");
             System.out.println("5.Salir del programa");
-            opcion = opmenu.nextInt();
+            //opcion = opmenu.nextInt();
             System.out.println("---------------------------------------------------------------------\n");
-            switch (opcion) {
-                case 1:
-                    System.out.println("-----------------------------------------------------------------------");
-                    System.out.println("                    AGREGAR NUEVO DOCTOR                                ");
-                    System.out.println("---------------------------------------------------------------------\n");
-                    CrearDoctor crear = new CrearDoctor();
-                    crear.ListaDoctores();
-                    System.out.println("---------------------------------------------------------------------\n");
-                    break;
-                case 2:
-                    System.out.println("-----------------------------------------------------------------------");
-                    System.out.println("                      AGREGAR PACIENTE                                ");
-                    System.out.println("---------------------------------------------------------------------\n");
-                    CrearPaciente crearPaciente = new CrearPaciente();
-                    crearPaciente.ListaPacientes();
-                    System.out.println("\n---------------------------------------------------------------------");
-                    System.out.println("----------------------------------------------------------------------\n\n");
-                    break;
-                case 3:
-                    System.out.println("-----------------------------------------------------------------------");
-                    System.out.println("                       AGREGAR CITA                                         ");
-                    System.out.println("---------------------------------------------------------------------\n");
-                    CrearCita crearCita = new CrearCita();
-                    crearCita.ListaCitas();
-                    System.out.println("\n---------------------------------------------------------------------");
-                    System.out.println("----------------------------------------------------------------------\n\n");
-                    break;
-                case 4:
-                    System.out.println("Eliminar datos");
-                    break;
-                case 5:
-                    salir = true;
-                    System.out.println("Salir");
-                    break;
-                default:
-                    System.out.println("Opcion invalida");
-                    break;
+            try {
+                opcion = scanner.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        System.out.println("-----------------------------------------------------------------------");
+                        System.out.println("                    AGREGAR NUEVO DOCTOR                                ");
+                        System.out.println("---------------------------------------------------------------------\n");
+                        CrearDoctor crear = new CrearDoctor();
+                        crear.ListaDoctores();
+                        System.out.println("---------------------------------------------------------------------\n");
+                        break;
+                    case 2:
+                        System.out.println("-----------------------------------------------------------------------");
+                        System.out.println("                      AGREGAR PACIENTE                                ");
+                        System.out.println("---------------------------------------------------------------------\n");
+                        CrearPaciente crearPaciente = new CrearPaciente();
+                        crearPaciente.ListaPacientes();
+                        System.out.println("\n---------------------------------------------------------------------");
+                        System.out.println("----------------------------------------------------------------------\n\n");
+                        break;
+                    case 3:
+                        System.out.println("-----------------------------------------------------------------------");
+                        System.out.println("                       AGREGAR CITA                                         ");
+                        System.out.println("---------------------------------------------------------------------\n");
+                        CrearCita crearCita = new CrearCita();
+                        crearCita.ListaCitas();
+                        System.out.println("\n---------------------------------------------------------------------");
+                        System.out.println("----------------------------------------------------------------------\n\n");
+                        break;
+                    case 4:
+                        System.out.println("Eliminar datos");
+                        break;
+                    case 5:
+                        salir = true;
+                        System.out.println("Salir");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion no valida");
+                scanner.next();
             }
-        }
+
         }
 
     }
-
+}
