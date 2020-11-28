@@ -35,8 +35,7 @@ public class AgendaCitas {
             System.out.println("1.Agregar doctor: ");
             System.out.println("2.Agregar pacientes: ");
             System.out.println("3.Agregar una nueva cita");
-            System.out.println("4.Eliminar cita");
-            System.out.println("5.Salir del programa");
+            System.out.println("4.Salir del programa");
             //opcion = opmenu.nextInt();
             System.out.println("---------------------------------------------------------------------\n");
             try {
@@ -70,9 +69,6 @@ public class AgendaCitas {
                         System.out.println("----------------------------------------------------------------------\n\n");
                         break;
                     case 4:
-                        System.out.println("Eliminar datos");
-                        break;
-                    case 5:
                         salir = true;
                         System.out.println("Salir");
                         break;

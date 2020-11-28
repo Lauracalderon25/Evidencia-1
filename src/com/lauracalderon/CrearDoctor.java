@@ -20,7 +20,7 @@ public class CrearDoctor {
 
 
        Scanner entrada = new Scanner(System.in);
-       System.out.println("Ingresa el nombre del dotor");
+       System.out.println("Ingresa el nombre del doctor");
        var nombre = entrada.next();
 
        Scanner leer = new Scanner(System.in);
