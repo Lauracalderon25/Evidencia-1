@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -49,9 +50,15 @@ public class CrearDoctor {
 
     }
 
+    private static final String RutaDoctor = System.getProperty("user.home");
+   private static final String DocumentoDoctor = "DataBaseDoctor.csv";
+
     public static void ExportarCSV(List<Doctor> Doctores){
-        String salidaArchivo = "DataBaseDoctor.csv"; // Nombre del archivo
+        //String salidaArchivo = "DataBaseDoctor.csv"; // Nombre del archivo
+        var separador = FileSystems.getDefault().getSeparator();
+        var salidaArchivo = String.format("%s%s%s", RutaDoctor,separador,DocumentoDoctor);
         boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
+
 
         // Si existe un archivo llamado asi lo borra
         if(existe) {

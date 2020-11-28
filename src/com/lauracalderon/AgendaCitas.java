@@ -26,7 +26,7 @@ public class AgendaCitas {
         int opcion;
         boolean salir = false;
 
-        do {
+        while (!salir) {
             System.out.println("---------------------------------------------------------------------");
             System.out.println("                               AGENDA DE CITAS");
             System.out.println("---------------------------------------------------------------------\n");
@@ -77,7 +77,7 @@ public class AgendaCitas {
                     System.out.println("Opcion invalida");
                     break;
             }
-        }while (opcion != 6);
+        }
         }
 
     }

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -45,8 +46,13 @@ public class CrearCita {
 
     }
 
+    private static final String RutaCita = System.getProperty("user.home");
+    private static final String DocumentoCita = "DataBaseCita.csv";
+
     public static void ExportarCSV(List<Cita> Citas){
-        String salidaArchivo = "DataBaseCitas.csv"; // Nombre del archivo
+        //String salidaArchivo = "DataBaseCitas.csv"; // Nombre del archivo
+        var separador = FileSystems.getDefault().getSeparator();
+        var salidaArchivo = String.format("%s%s%s", RutaCita,separador,DocumentoCita);
         boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
 
         // Si existe un archivo llamado asi lo borra
