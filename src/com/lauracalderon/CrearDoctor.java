@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -47,11 +49,11 @@ public class CrearDoctor {
            var cedula = entrada3.next();
 
 
-           Doctores.add(new Doctor(nombre, telefono, correo, especialidad, cedula));
+           //Doctores.add(new Doctor(nombre, telefono, correo, especialidad, cedula));
 
 
            //Doctores.add(new Doctor())
-           ImportarCSV();
+           ImportarCSV(nombre,telefono,correo,especialidad,cedula);
            ExportarCSV(Doctores);
 
        }
@@ -59,93 +61,38 @@ public class CrearDoctor {
     private static final String RutaDoctor = System.getProperty("user.home");
    private static final String DocumentoDoctor = "DataBaseDoctor.csv";
 
-    public static void ExportarCSV(List<Doctor> Doctores){
+    public static void ExportarCSV(List<Doctor> Doctores) {
         //String salidaArchivo = "DataBaseDoctor.csv"; // Nombre del archivo
         var separador = FileSystems.getDefault().getSeparator();
-        var salidaArchivo = String.format("%s%s%s", RutaDoctor,separador,DocumentoDoctor);
-        boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
-
+        var salidaArchivo = String.format("%s%s%s", RutaDoctor, separador, DocumentoDoctor);
+        Path locaciondoc = Paths.get(salidaArchivo);
 
         // Si existe un archivo llamado asi lo borra
-        if(existe) {
-            File archivoDataBaseDoctor = new File(salidaArchivo);
-            archivoDataBaseDoctor.delete();
-        }
-
-        try {
-            // Crea el archivo
-            CsvWriter salidaCSV = new CsvWriter(new FileWriter(salidaArchivo, true), ',');
-
-            // Datos para identificar las columnas
-            salidaCSV.write("Nombre");
-            salidaCSV.write("Telefono");
-            salidaCSV.write("Correo");
-            salidaCSV.write("Especialidad");
-            salidaCSV.write("Cedula");
-
-            salidaCSV.endRecord(); // Deja de escribir en el archivo
-
-            // Recorremos la lista y lo insertamos en el archivo
-            for(Doctor user : Doctores) {
-                salidaCSV.write(user.getNOMBRE());
-                salidaCSV.write(user.getTELEFONO());
-                salidaCSV.write(user.getCORREO());
-                salidaCSV.write(user.getESPECIALIDAD());
-                salidaCSV.write(user.getCEDULA());
-
-                salidaCSV.endRecord(); // Deja de escribir en el archivo
+        if (!java.nio.file.Files.exists(locaciondoc)) {
+            File file = new File(String.valueOf(locaciondoc));
+            try {
+                file.createNewFile();
+            } catch (Exception e) {
+                System.out.println("Error" + e);
             }
-
-            salidaCSV.close(); // Cierra el archivo
-
-        } catch(IOException e) {
-            e.printStackTrace();
         }
     }
-    public static void ImportarCSV() {
-        try{
-            List<Doctor> usuarios = new ArrayList<Doctor>(); // Lista donde guardaremos los datos del archivo
 
-            CsvReader leerUsuarios = new CsvReader("DataBaseDoctor.csv");
-            leerUsuarios.readHeaders();
-
-
-
-            // Mientras haya lineas obtenemos los datos del archivo
-            while(leerUsuarios.readRecord()) {
-                String Nombre = leerUsuarios.get(0);
-                String Telefono = leerUsuarios.get(1);
-                String Correo = leerUsuarios.get(2);
-                String Especialidad  = leerUsuarios.get(3);
-                String Cedula = leerUsuarios.get(4);
-
-
-                usuarios.add(new Doctor(Nombre, Telefono, Correo, Especialidad, Cedula)); // Añade la informacion a la lista
-
-
+        public static void ImportarCSV(String nombre, String telefono, String correo, String especialidad, String cedula) {
+            var separador = FileSystems.getDefault().getSeparator();
+            var filepath = String.format("%s%s%s", RutaDoctor, separador, DocumentoDoctor);
+            Path locaciondoc = Paths.get(filepath);
+            try{
+                FileWriter writePaciente = new FileWriter(filepath, true);
+                writePaciente.write("Nombre del doctor: "+nombre+"  Telefono: "+telefono+"  Correo: "+correo+"  Especialidad: "+especialidad+"  Cedula de doctor: "+cedula);
+                writePaciente.write("\r\n");
+                writePaciente.close();
+            } catch (Exception e) {
+                System.out.println("Error"+e);
             }
-
-            //leerUsuarios.close(); // Cierra el archivo
-
-
-
-            // Recorremos la lista y la mostramos en la pantalla
-            /*for(Doctor user : usuarios) {
-                System.out.println(user.getNOMBRE() + " , "
-                        + user.getTELEFONO() + " , "
-                        +user.getCORREO() + " , "
-                        +user.getESPECIALIDAD() + " , "
-                        +user.getCEDULA());
-
-            }*/
-
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
         }
     }
-}
+
 
 
 
