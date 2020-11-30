@@ -14,38 +14,45 @@ import java.util.Scanner;
 
 public class CrearPaciente {
 
-    public void ListaPacientes()  {
+    public void ListaPacientes() {
         List<Paciente> Pacientes = new ArrayList<Paciente>();
 
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingresa el nombre del paciente");
-        var nombre = entrada.nextLine();
-
-        Scanner leer = new Scanner(System.in);
-        System.out.println("Ingresa el telefono");
-        var telefono = leer.nextLine();
-
-        Scanner entrada1 = new Scanner(System.in);
-        System.out.println("Ingresa el correo");
-        var correo = entrada1.nextLine();
-
-        Scanner entrada2 = new Scanner(System.in);
-        System.out.println("Ingresa la edad del paciente");
-        var edad = entrada2.nextLine();
-
-        Scanner entrada3 = new Scanner(System.in);
-        System.out.println("Ingresa el genero del paciente");
-        var genero = entrada3.nextLine();
+        Scanner numero = new Scanner(System.in);
+        System.out.println("¿Cuantos pacientes vas a ingresar?");
+        var no = numero.nextInt();
 
 
-        Pacientes.add(new Paciente(nombre, telefono, correo,edad, genero ));
+        for (int x = 0; x < no; x++) {
 
-        //Doctores.add(new Doctor())
-        ImportarCSV();
-        ExportarCSV(Pacientes);
+            Scanner entrada = new Scanner(System.in);
+            System.out.println("Ingresa el nombre del paciente");
+            var nombre = entrada.nextLine();
 
+            Scanner leer = new Scanner(System.in);
+            System.out.println("Ingresa el telefono");
+            var telefono = leer.nextLine();
+
+            Scanner entrada1 = new Scanner(System.in);
+            System.out.println("Ingresa el correo");
+            var correo = entrada1.nextLine();
+
+            Scanner entrada2 = new Scanner(System.in);
+            System.out.println("Ingresa la edad del paciente");
+            var edad = entrada2.nextLine();
+
+            Scanner entrada3 = new Scanner(System.in);
+            System.out.println("Ingresa el genero del paciente");
+            var genero = entrada3.nextLine();
+
+
+            Pacientes.add(new Paciente(nombre, telefono, correo, edad, genero));
+
+            //Doctores.add(new Doctor())
+            ImportarCSV();
+            ExportarCSV(Pacientes);
+
+        }
     }
-
     private static final String RutaPaciente = System.getProperty("user.home");
     private static final String DocumentoPaciente = "DataBasePaciente.csv";
 
