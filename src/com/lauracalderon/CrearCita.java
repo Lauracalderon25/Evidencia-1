@@ -14,38 +14,45 @@ import java.util.Scanner;
 
 public class CrearCita {
 
-    public void ListaCitas()  {
+    public void ListaCitas() {
         List<Cita> Citas = new ArrayList<Cita>();
 
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingresa el nombre del paciente");
-        var nombre = entrada.nextLine();
-
-        Scanner leer = new Scanner(System.in);
-        System.out.println("Ingresa la fecha");
-        var fecha = leer.nextLine();
-
-        Scanner entrada1 = new Scanner(System.in);
-        System.out.println("Ingresa la hora");
-        var hora = entrada1.nextLine();
-
-        Scanner entrada2 = new Scanner(System.in);
-        System.out.println("Ingresa el motivo");
-        var motivo = entrada2.nextLine();
-
-        Scanner entrada3 = new Scanner(System.in);
-        System.out.println("Ingresa el nombre del doctor");
-        var nomdoctor = entrada3.nextLine();
+        Scanner numero = new Scanner(System.in);
+        System.out.println("¿Cuantas citas vas a ingresar?");
+        var no = numero.nextInt();
 
 
-        Citas.add(new Cita (nombre, fecha, hora, motivo, nomdoctor));
+        for (int x = 0; x < no; x++) {
+
+            Scanner entrada = new Scanner(System.in);
+            System.out.println("Ingresa el nombre del paciente");
+            var nombre = entrada.nextLine();
+
+            Scanner leer = new Scanner(System.in);
+            System.out.println("Ingresa la fecha");
+            var fecha = leer.nextLine();
+
+            Scanner entrada1 = new Scanner(System.in);
+            System.out.println("Ingresa la hora");
+            var hora = entrada1.nextLine();
+
+            Scanner entrada2 = new Scanner(System.in);
+            System.out.println("Ingresa el motivo");
+            var motivo = entrada2.nextLine();
+
+            Scanner entrada3 = new Scanner(System.in);
+            System.out.println("Ingresa el nombre del doctor");
+            var nomdoctor = entrada3.nextLine();
 
 
-        ImportarCSV();
-        ExportarCSV(Citas);
+            Citas.add(new Cita(nombre, fecha, hora, motivo, nomdoctor));
 
+
+            ImportarCSV();
+            ExportarCSV(Citas);
+
+        }
     }
-
     private static final String RutaCita = System.getProperty("user.home");
     private static final String DocumentoCita = "DataBaseCita.csv";
 

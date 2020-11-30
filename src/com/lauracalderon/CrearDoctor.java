@@ -15,41 +15,47 @@ import com.csvreader.CsvReader;
 
 public class CrearDoctor {
 
-   public void ListaDoctores()  {
-        List<Doctor> Doctores = new ArrayList<Doctor>();
+   public void ListaDoctores() {
+       List<Doctor> Doctores = new ArrayList<Doctor>();
+
+       Scanner numero = new Scanner(System.in);
+       System.out.println("¿Cuantos doctores vas a ingresar?");
+       var no = numero.nextInt();
 
 
-       Scanner entrada = new Scanner(System.in);
-       System.out.println("Ingresa el nombre del doctor");
-       var nombre = entrada.next();
-
-       Scanner leer = new Scanner(System.in);
-       System.out.println("Ingresa el telefono");
-       var telefono = leer.next();
-
-       Scanner entrada1 = new Scanner(System.in);
-       System.out.println("Ingresa el correo");
-       var correo = entrada1.next();
-
-       Scanner entrada2 = new Scanner(System.in);
-       System.out.println("Ingresa la especialidad");
-       var especialidad = entrada2.next();
-
-       Scanner entrada3 = new Scanner(System.in);
-       System.out.println("Ingresa la cedula");
-       var cedula = entrada3.next();
+       for (int x = 0; x < no; x++) {
 
 
-       Doctores.add(new Doctor(nombre, telefono, correo,especialidad,cedula ));
+           Scanner entrada = new Scanner(System.in);
+           System.out.println("Ingresa el nombre del doctor");
+           var nombre = entrada.next();
+
+           Scanner leer = new Scanner(System.in);
+           System.out.println("Ingresa el telefono");
+           var telefono = leer.next();
+
+           Scanner entrada1 = new Scanner(System.in);
+           System.out.println("Ingresa el correo");
+           var correo = entrada1.next();
+
+           Scanner entrada2 = new Scanner(System.in);
+           System.out.println("Ingresa la especialidad");
+           var especialidad = entrada2.next();
+
+           Scanner entrada3 = new Scanner(System.in);
+           System.out.println("Ingresa la cedula");
+           var cedula = entrada3.next();
 
 
+           Doctores.add(new Doctor(nombre, telefono, correo, especialidad, cedula));
 
-        //Doctores.add(new Doctor())
-        ImportarCSV();
-        ExportarCSV(Doctores);
 
-    }
+           //Doctores.add(new Doctor())
+           ImportarCSV();
+           ExportarCSV(Doctores);
 
+       }
+   }
     private static final String RutaDoctor = System.getProperty("user.home");
    private static final String DocumentoDoctor = "DataBaseDoctor.csv";
 
