@@ -1,5 +1,5 @@
 ## Instalación.
-####El requerimiento para este proyecto es que el equipo en el que se va a usar tenga:
+#### El requerimiento para este proyecto es que el equipo en el que se va a usar tenga:
 ##### •	Java
 #### Esta pensado para que sea ejecutable en cualquier sistema operativo que tenga instalado Java.
 ## Uso del programa.
