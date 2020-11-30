@@ -35,7 +35,7 @@ public class AgendaCitas {
             System.out.println("1.Agregar doctor: ");
             System.out.println("2.Agregar pacientes: ");
             System.out.println("3.Agregar una nueva cita");
-            System.out.println("4.Salir del programa");
+            System.out.println("4.Salir del programa y guardar");
             //opcion = opmenu.nextInt();
             System.out.println("---------------------------------------------------------------------\n");
             try {
@@ -70,7 +70,7 @@ public class AgendaCitas {
                         break;
                     case 4:
                         salir = true;
-                        System.out.println("Salir");
+                        System.out.println("Saliste.");
                         break;
                     default:
                         System.out.println("Opcion invalida");

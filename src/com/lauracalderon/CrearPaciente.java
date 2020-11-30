@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -45,10 +47,10 @@ public class CrearPaciente {
             var genero = entrada3.nextLine();
 
 
-            Pacientes.add(new Paciente(nombre, telefono, correo, edad, genero));
+            //Pacientes.add(new Paciente(nombre, telefono, correo, edad, genero));
 
             //Doctores.add(new Doctor())
-            ImportarCSV();
+            ImportarCSV(nombre,telefono,correo,edad,genero);
             ExportarCSV(Pacientes);
 
         }
@@ -60,78 +62,31 @@ public class CrearPaciente {
         //String salidaArchivo = "DataBasePaciente.csv"; // Nombre del archivo
         var separador = FileSystems.getDefault().getSeparator();
         var salidaArchivo = String.format("%s%s%s", RutaPaciente,separador,DocumentoPaciente);
-        boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
+        Path locaciondoc = Paths.get(salidaArchivo);
 
         // Si existe un archivo llamado asi lo borra
-        if(existe) {
-            File archivoDataBasePaciente = new File(salidaArchivo);
-            archivoDataBasePaciente.delete();
-        }
-
-        try {
-            // Crea el archivo
-            CsvWriter salidaCSV = new CsvWriter(new FileWriter(salidaArchivo, true), ',');
-
-            // Datos para identificar las columnas
-            salidaCSV.write("Nombre");
-            salidaCSV.write("Telefono");
-            salidaCSV.write("Correo");
-            salidaCSV.write("Edad");
-            salidaCSV.write("Genero");
-
-            salidaCSV.endRecord(); // Deja de escribir en el archivo
-
-            // Recorremos la lista y lo insertamos en el archivo
-            for(Paciente user : Pacientes) {
-                salidaCSV.write(user.getNOMBRE());
-                salidaCSV.write(user.getTELEFONO());
-                salidaCSV.write(user.getCORREO());
-                salidaCSV.write(user.getEDAD());
-                salidaCSV.write(user.getGENERO());
-
-                salidaCSV.endRecord(); // Deja de escribir en el archivo
+        if(!java.nio.file.Files.exists(locaciondoc)) {
+            File file = new File (String.valueOf(locaciondoc));
+            try{
+                file.createNewFile();
+            } catch (Exception e) {
+                System.out.println("Error"+e);
             }
-
-            salidaCSV.close(); // Cierra el archivo
-
-        } catch(IOException e) {
-            e.printStackTrace();
         }
+
     }
-    public static void ImportarCSV() {
+    public static void ImportarCSV(String nombre, String telefono, String correo, String edad, String genero) {
+        var separador = FileSystems.getDefault().getSeparator();
+        var filepath = String.format("%s%s%s", RutaPaciente,separador,DocumentoPaciente);
+        Path locaciondoc = Paths.get(filepath);
         try{
-            List<Paciente> usuarios = new ArrayList<Paciente>(); // Lista donde guardaremos los datos del archivo
-
-            CsvReader leerUsuarios = new CsvReader("DataBasePaciente.csv");
-            leerUsuarios.readHeaders();
-
-            // Mientras haya lineas obtenemos los datos del archivo
-            while(leerUsuarios.readRecord()) {
-                String Nombre = leerUsuarios.get(0);
-                String Telefono = leerUsuarios.get(1);
-                String Correo = leerUsuarios.get(2);
-                String Edad  = leerUsuarios.get(3);
-                String Genero = leerUsuarios.get(4);
-
-                usuarios.add(new Paciente(Nombre, Telefono, Correo, Edad, Genero)); // Añade la informacion a la lista
-            }
-
-            //leerUsuarios.close(); // Cierra el archivo
-
-            // Recorremos la lista y la mostramos en la pantalla
-            /*for(Paciente user : usuarios) {
-                System.out.println(user.getNOMBRE() + " , "
-                        + user.getTELEFONO() + " , "
-                        +user.getCORREO() + " , "
-                        +user.getEDAD() + " , "
-                        +user.getGENERO());
-
-            }*/
-
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
+            FileWriter writePaciente = new FileWriter(filepath, true);
+            writePaciente.write("Nombre: "+nombre+"  Telefono: "+telefono+"  Correo: "+correo+"  Edad: "+edad+"  Genero: "+genero);
+            writePaciente.write("\r\n");
+            writePaciente.close();
+        } catch (Exception e) {
+            System.out.println("Error"+e);
         }
+
     }
 }

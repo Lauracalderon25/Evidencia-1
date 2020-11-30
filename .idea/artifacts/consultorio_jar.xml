@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="consultorio:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/consultorio_jar</output-path>
+    <root id="archive" name="consultorio.jar">
+      <element id="module-output" name="consultorio" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/javacsv2.1/javacsv.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

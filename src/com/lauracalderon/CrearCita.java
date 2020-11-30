@@ -8,6 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -45,10 +48,10 @@ public class CrearCita {
             var nomdoctor = entrada3.nextLine();
 
 
-            Citas.add(new Cita(nombre, fecha, hora, motivo, nomdoctor));
+            //Citas.add(new Cita(nombre, fecha, hora, motivo, nomdoctor));
 
 
-            ImportarCSV();
+            ImportarCSV(nombre,fecha,hora,motivo,nomdoctor);
             ExportarCSV(Citas);
 
         }
@@ -58,80 +61,32 @@ public class CrearCita {
 
     public static void ExportarCSV(List<Cita> Citas){
         //String salidaArchivo = "DataBaseCitas.csv"; // Nombre del archivo
+
         var separador = FileSystems.getDefault().getSeparator();
         var salidaArchivo = String.format("%s%s%s", RutaCita,separador,DocumentoCita);
-        boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
+        Path locaciondoc = Paths.get(salidaArchivo);
 
         // Si existe un archivo llamado asi lo borra
-        if(existe) {
-            File archivoDataBaseCitas = new File(salidaArchivo);
-            archivoDataBaseCitas.delete();
-        }
-
-        try {
-            // Crea el archivo
-            CsvWriter salidaCSV = new CsvWriter(new FileWriter(salidaArchivo, true), ',');
-
-            // Datos para identificar las columnas
-            salidaCSV.write("Nombre");
-            salidaCSV.write("Fecha");
-            salidaCSV.write("Hora");
-            salidaCSV.write("Motivo");
-            salidaCSV.write("Doctor");
-
-            salidaCSV.endRecord(); // Deja de escribir en el archivo
-
-            // Recorremos la lista y lo insertamos en el archivo
-            for(Cita user : Citas) {
-                salidaCSV.write(user.getNOMBRE());
-                salidaCSV.write(user.getFECHA());
-                salidaCSV.write(user.getHORA());
-                salidaCSV.write(user.getMOTIVO());
-                salidaCSV.write(user.getNOMDOCTOR());
-
-                salidaCSV.endRecord(); // Deja de escribir en el archivo
+        if (!java.nio.file.Files.exists(locaciondoc)) {
+            File file = new File(String.valueOf(locaciondoc));
+            try {
+                file.createNewFile();
+            } catch (Exception e) {
+                System.out.println("Error" + e);
             }
-
-            salidaCSV.close(); // Cierra el archivo
-
-        } catch(IOException e) {
-            e.printStackTrace();
         }
     }
-    public static void ImportarCSV() {
+    public static void ImportarCSV(String nombre, String fecha, String hora, String motivo, String nomdoctor) {
+        var separador = FileSystems.getDefault().getSeparator();
+        var filepath = String.format("%s%s%s", RutaCita,separador,DocumentoCita);
+        Path locaciondoc = Paths.get(filepath);
         try{
-            List<Cita> usuarios = new ArrayList<Cita>(); // Lista donde guardaremos los datos del archivo
-
-            CsvReader leerUsuarios = new CsvReader("DataBaseCitas.csv");
-            leerUsuarios.readHeaders();
-
-            // Mientras haya lineas obtenemos los datos del archivo
-            while(leerUsuarios.readRecord()) {
-                String Nombre = leerUsuarios.get(0);
-                String Fecha = leerUsuarios.get(1);
-                String Hora = leerUsuarios.get(2);
-                String Motivo  = leerUsuarios.get(3);
-                String NomDoctor= leerUsuarios.get(4);
-
-                usuarios.add(new Cita(Nombre, Fecha, Hora, Motivo, NomDoctor)); // Añade la informacion a la lista
-            }
-
-           // leerUsuarios.close(); // Cierra el archivo
-
-            // Recorremos la lista y la mostramos en la pantalla
-          /*  for(Cita user : usuarios) {
-                System.out.println(user.getNOMBRE() + " , "
-                        + user.getFECHA() + " , "
-                        +user.getHORA() + " , "
-                        +user.getMOTIVO() + " , "
-                        +user.getNOMDOCTOR());
-
-            }*/
-
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
+            FileWriter writePaciente = new FileWriter(filepath, true);
+            writePaciente.write("Nombre del paciente: "+nombre+"  Fecha: "+fecha+"  Hora: "+hora+"  Motivo: "+motivo+"  Nombre del doctor: "+nomdoctor);
+            writePaciente.write("\r\n");
+            writePaciente.close();
+        } catch (Exception e) {
+            System.out.println("Error"+e);
         }
     }
 }
